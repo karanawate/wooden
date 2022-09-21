@@ -1,11 +1,10 @@
 import react, { useEffect,useState } from 'react';
 import axios from 'axios';
+import './../App.css';
 
 const Home = () => {
 
     const [users, setUsers] = useState([]);
-
-     
 
     useEffect(() => {
         loadUsers();
@@ -31,6 +30,7 @@ const Home = () => {
                         {index + 1}
                      </td>
                      <td>
+                        <img className='avatar' src={`https://ui-avatars.com/api/?bold=true&background=random&name=`+user.name} />
                         {user.name}
                      </td>
                     </tr>
