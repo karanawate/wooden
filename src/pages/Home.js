@@ -19,9 +19,24 @@ const Home = () => {
     }
 
     return <div>
-        {users.map((user)=>(
-            <h1>{user.name}</h1>
-        ))}
+        <table>
+            <thead>
+                <th>Roll No</th>
+                <th>name</th>
+            </thead>
+            <tbody>
+                {users.map((user,index) =>(
+                    <tr>
+                     <td>
+                        {index + 1}
+                     </td>
+                     <td>
+                        {user.name}
+                     </td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
      </div>
         
 }
