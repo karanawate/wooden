@@ -19,7 +19,9 @@ const Home = () => {
     }
 
     return <div>
-        hello
+        {users.map((user)=>(
+            <h1>{user.name}</h1>
+        ))}
      </div>
         
 }
