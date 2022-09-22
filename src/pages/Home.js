@@ -11,10 +11,8 @@ const Home = () => {
       }, []);
 
     const loadUsers = async () =>{
-        
             let result = await axios.get('https://jsonplaceholder.typicode.com/users');
             setUsers(result.data);
-          
     }
 
     return <div>
