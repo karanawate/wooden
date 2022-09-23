@@ -3,17 +3,17 @@ import axios from 'axios';
 import './../App.css';
 
 const Home = () => {
-
     const [users, setUsers] = useState([]);
-
-    useEffect(() => {
-        loadUsers();
-      }, []);
-
-    const loadUsers = async () =>{
-            let result = await axios.get('https://jsonplaceholder.typicode.com/users');
-            setUsers(result.data);
-    }
+        useEffect(() =>{
+            axios
+            .get('https://jsonplaceholder.typicode.com/users')
+            .then(res => {
+                setUsers(res.data)
+            })
+            .catch(err =>{
+                console.log(err)
+            })
+        },[]);
 
     return <div>
         <table>
