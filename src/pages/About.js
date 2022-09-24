@@ -1,25 +1,30 @@
-import react, { useMemo } from 'react';
+import react, { useContext, useEffect, useMemo } from 'react';
 import { useState } from 'react';
+import axios from 'axios';
+import { mydata } from '../App';
 
 const About  = () =>{
-    const [add, setAdd] = useState(0);
-    const [sub, setSub] = useState(1000);
+    const username = useContext(mydata);
 
-     const multiplicaton = useMemo(() =>{
-        console.warn('Hello');
-        return add*2;
-     },[add]);
-
+    const[users,setUser] = useState([]);
+    
+    useEffect(() =>{
+        axios
+        .get('http://127.0.0.1:8000/api/users')
+        .then(res =>{
+            setUser(res.data.data)
+        })
+        .catch(err =>{
+            console.log(err)
+        })
+    },[])
     return <div>
+        {JSON.stringify(username)}
+
+        {users.map((user)=>(
+            <p1>{user.name}</p1>
+        ))}
       
-        countin addition: <span>{add}</span>
-        <button onClick={()=>setAdd(add + 1)}>Addition</button>
-        <br></br>
-        countin Subtration: <span>{sub}</span>
-        <button onClick={()=>setSub(sub - 1)}>Subtration</button>
-        <br>
-        </br>
-        {multiplicaton}
-    </div>
+        </div>
 }
 export default About;
