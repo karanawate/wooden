@@ -1,30 +1,25 @@
-import react, { useContext, useEffect, useMemo } from 'react';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import axios from 'axios';
-import { mydata } from '../App';
+import TodoCreate from './TodoCreate';
 
-const About  = () =>{
-    const username = useContext(mydata);
+const About  = () => {
+    const[count, setCount] = useState(1);
+    const[todos, setTodos] = useState([]);
 
-    const[users,setUser] = useState([]);
+    const addtodos = useCallback(() =>{
+        setTodos((prev) => [...prev,'new entry']);
+    },[todos])
     
-    useEffect(() =>{
-        axios
-        .get('http://127.0.0.1:8000/api/users')
-        .then(res =>{
-            setUser(res.data.data)
-        })
-        .catch(err =>{
-            console.log(err)
-        })
-    },[])
-    return <div>
-        {JSON.stringify(username)}
+    
+    const addcount = () => {
+        setCount(count + 1) 
+        
+    }
 
-        {users.map((user)=>(
-            <p1>{user.name}</p1>
-        ))}
-      
-        </div>
+  
+    return <div>
+          <TodoCreate todos={todos}  addtodos= {addtodos} / >
+            <span>count:{count}</span><button onClick={addcount}>Increment</button>
+           </div>
 }
 export default About;
