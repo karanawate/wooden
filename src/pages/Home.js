@@ -1,6 +1,7 @@
 import react, { useEffect,useState } from 'react';
 import axios from 'axios';
 import './../App.css';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
     const [users, setUsers] = useState([]);
@@ -32,7 +33,7 @@ const Home = () => {
                      </td>
                      <td>
                         <img className='avatar' src={`https://ui-avatars.com/api/?bold=true&background=random&name=`+user.name} />
-                        {user.name}
+                        <Link to={`/user-detail/${user.id}`}>{user.name}</Link>
                      </td>
                      <td>{user.email}</td>
                      <td>{user.created_at}</td>

@@ -4,10 +4,12 @@ import TodoCreate from './TodoCreate';
 
 const About  = () => {
     const[count, setCount] = useState(1);
-    const[todos, setTodos] = useState([]);
+    const[todos, setTodos] = useState(1);
 
+   
+ 
     const addtodos = useCallback(() =>{
-        setTodos((prev) => [...prev,'new entry']);
+        setTodos(todos + 1)
     },[todos])
     
     
@@ -18,7 +20,7 @@ const About  = () => {
 
   
     return <div>
-          <TodoCreate todos={todos}  addtodos= {addtodos} / >
+          <TodoCreate  todos={todos}  addtodos= {addtodos} / >
             <span>count:{count}</span><button onClick={addcount}>Increment</button>
            </div>
 }
