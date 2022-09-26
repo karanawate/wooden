@@ -7,4 +7,5 @@ const UserDetail =  () =>{
         {JSON.stringify({id})}
     </div>
 } 
+
 export default UserDetail;
