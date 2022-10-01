@@ -7,6 +7,7 @@ import About from './pages/About';
 import TodoCreate from './pages/TodoCreate';
 import Navbar from './components/Layout/Navbar';
 import UserDetail from './pages/UserDetail';
+import AddAdmin from './pages/AddAdmin';
 import {BrowserRouter as Router,Route,Routes,Link } from "react-router-dom";
 
 
@@ -21,6 +22,7 @@ function App() {
             <Route   path="/user-detail/:id"       element={<UserDetail/>} />
             <Route   path="/about"       element={<About/>} />
             <Route   path="/dashbord"   element={<Dashbord/>} />  
+            <Route   path="/add-admin"   element={<AddAdmin/>} />  
              
           </Routes>
         </Router>

@@ -1,4 +1,4 @@
-import react, { useEffect,useState } from 'react';
+import react, { useCallback, useEffect,useState } from 'react';
 import axios from 'axios';
 import './../App.css';
 import { Link } from 'react-router-dom';
@@ -17,7 +17,19 @@ const Home = () => {
             })
         },[]);
 
+        
+        const delteuser = useCallback((id) =>{
+                            axios.delete(`http://127.0.0.1:8000/api/user-delete/${id}`)
+                            .then(res =>{
+                                console.log(res)
+                            })
+                            .catch(err =>{
+                                console.log(err);
+                            })
+        })
+
     return <div>
+        <button><Link to="/add-admin">Add admin</Link></button>
         <table>
             <thead>
                 <th>Roll No</th>
@@ -37,6 +49,8 @@ const Home = () => {
                      </td>
                      <td>{user.email}</td>
                      <td>{user.created_at}</td>
+                     <button onClick={delteuser(user.id)}>delete</button>
+                     
                     </tr>
                 ))}
             </tbody>
