@@ -4,8 +4,13 @@ import './../App.css';
 import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
 
+
+
+ 
+
 const Home = () => {
     const [users, setUsers] = useState([]);
+    const [openedUser, setUserOpened] = useState(null)
     const [modalIsOpen, setIsOpen] = useState(false);
 
         useEffect(() =>{
@@ -32,11 +37,29 @@ const Home = () => {
         })
 
     return <div>
-        <Modal className='modal' isOpen={modalIsOpen}>
-            <h2>Hello user</h2>
-        </Modal>
+    <Modal 
+        style={{
+            content: {
+                display: "flex",
+                backgroundColor: "rgba(0, 0, 0, 0.1)",
+                borderWidth: 0,
+                flexDirection: "column",
+                flex: 1,
+                position: "unset",
+                height: "100%",
+                overflow: "auto",
+                justifyContent: "center",
+            },
+            }}
+         isOpen={modalIsOpen}>
+            <div className='modalview'>
+                <div >
+                {JSON.stringify(openedUser)}
+                </div>
+            </div>
+    </Modal>
         <button><Link to="/add-admin">Add admin</Link></button>
-        <table>
+        <table className='table table-hover'>
             <thead>
                 <th>Roll No</th>
                 <th>name</th>
@@ -50,18 +73,22 @@ const Home = () => {
                         {index + 1}
                      </td>
                      <td>
-                        <img className='avatar' src={`https://ui-avatars.com/api/?bold=true&background=random&name=`+user.name} onClick={()=> setIsOpen(true)}  />
+                        <img className='avatar' src={`https://ui-avatars.com/api/?bold=true&background=random&name=`+user.name} onClick={()=> {setIsOpen(true); setUserOpened(user)}}  />
                         {/* <Link to={`/user-detail/${user.id}`}>{user.name}</Link> */}
                         {user.name}
                      </td>
                      <td>{user.email}</td>
                      <td>{user.created_at}</td>
                      <button onClick={delteuser(user.id)}>delete</button>
-                     
                     </tr>
                 ))}
             </tbody>
         </table>
+        
+
+
+
+        
      </div>
         
 }
