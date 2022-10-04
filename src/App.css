@@ -3,3 +3,9 @@
   height: 40px;
   border-radius: 40px;
 }
+.modal{
+  background-color: red;
+  height: 500px;
+  width: 500px;
+  align-items: center;
+}
