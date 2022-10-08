@@ -1,27 +1,26 @@
 import { useCallback, useState } from 'react';
-import axios from 'axios';
+import Images from './Images';
 import TodoCreate from './TodoCreate';
 
 const About  = () => {
-    const[count, setCount] = useState(1);
-    const[todos, setTodos] = useState(1);
-
-   
- 
-    const addtodos = useCallback(() =>{
-        setTodos(todos + 1)
-    },[todos])
-    
-    
-    const addcount = () => {
-        setCount(count + 1) 
-        
+  
+    const bannerContainer  = {
+        backgroundColor:'#373e98',
+        height:'500px'   
     }
 
-  
-    return <div>
-          <TodoCreate  todos={todos}  addtodos= {addtodos} / >
-            <span>count:{count}</span><button onClick={addcount}>Increment</button>
+    const pageHeading = {
+        color:'red',
+        textAlign:'center',
+        
+        
+    }
+    
+    return <div >
+            <div style={bannerContainer}>
+             <img src={Images.TopBannerImageg} style={{ width:'200px',height:'200px'}}/>
+             <h5 style={pageHeading}>About page</h5>
+            </div>
            </div>
 }
 export default About;

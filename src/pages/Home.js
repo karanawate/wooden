@@ -25,7 +25,6 @@ const Home = () => {
             })
         },[]);
 
-        
         const delteuser = useCallback((id) =>{
                             axios.delete(`http://127.0.0.1:8000/api/user-delete/${id}`)
                             .then(res =>{
@@ -35,6 +34,7 @@ const Home = () => {
                                 console.log(err);
                             })
         })
+        
 
     return <div>
     <Modal 
