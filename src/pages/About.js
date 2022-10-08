@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
 import Images from './Images';
 import TodoCreate from './TodoCreate';
+import JurySlider from './JurySlider';
 
 const About  = () => {
   
@@ -21,6 +22,7 @@ const About  = () => {
              <img src={Images.TopBannerImageg} style={{ width:'200px',height:'200px'}}/>
              <h5 style={pageHeading}>About page</h5>
             </div>
+            <JurySlider />
            </div>
 }
 export default About;
