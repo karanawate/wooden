@@ -7,7 +7,8 @@ const JurySlider = () =>{
     const sliderImage = {
         height:'200px',
         width:'200px',
-        objectFit: 'cover'
+        objectFit: 'cover',
+        borderRadius:'50px'
     }
     return <div>
        <Carousel cols={3} rows={1} gap={20} loop={true} autoplay={1500}>
@@ -29,8 +30,7 @@ const JurySlider = () =>{
       <Carousel.Item>
         <img style={sliderImage}  src={Images.MaliniImg} />
       </Carousel.Item>
-     
-      {/* ... */}
+    
     </Carousel>
 
     </div>

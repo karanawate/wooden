@@ -14,8 +14,11 @@ const Home = () => {
     const [modalIsOpen, setIsOpen] = useState(false);
 
         useEffect(() =>{
-            console.warn('df');
-            axios
+            loadUsers()
+        },[]);
+
+        const loadUsers = async () =>{
+            await axios
             .get('http://127.0.0.1:8000/api/users')
             .then(res => {
                 setUsers(res.data.data)
@@ -23,17 +26,22 @@ const Home = () => {
             .catch(err =>{
                 console.log(err)
             })
-        },[]);
+        }
 
-        const delteuser = useCallback((id) =>{
-                            axios.delete(`http://127.0.0.1:8000/api/user-delete/${id}`)
+
+
+        const deleteUsrs = async id =>{
+           await axios.post("http://127.0.0.1:8000/api/user-delete",{
+                'id':id
+            })
                             .then(res =>{
                                 console.log(res)
+                                loadUsers()
                             })
                             .catch(err =>{
                                 console.log(err);
                             })
-        })
+        }
         
 
     return <div>
@@ -61,14 +69,16 @@ const Home = () => {
         <button><Link to="/add-admin">Add admin</Link></button>
         <table className='table table-hover'>
             <thead>
-                <th>Roll No</th>
-                <th>name</th>
-                <th>email</th>
-                <th>created-at</th>
+                <tr>
+                    <th>Roll No</th>
+                    <th>name</th>
+                    <th>email</th>
+                    <th>created-at</th>
+                </tr>
             </thead>
             <tbody>
                 {users.map((user,index) =>(
-                    <tr>
+                    <tr key={user.id}>
                      <td>
                         {index + 1}
                      </td>
@@ -79,7 +89,7 @@ const Home = () => {
                      </td>
                      <td>{user.email}</td>
                      <td>{user.created_at}</td>
-                     <button onClick={delteuser(user.id)}>delete</button>
+                     <td><button onClick={() => deleteUsrs(user.id)}>delete</button></td>
                     </tr>
                 ))}
             </tbody>

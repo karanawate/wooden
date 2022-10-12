@@ -29,5 +29,7 @@ const Images =
     RuchitaImg: require('../assets/images/sliderProfileImgRuchita.png'),
     SHINYDOSHIImg: require('../assets/images/sliderProfileImgSHINYDOSHI.png')
 
+    
+
 }
 export default Images;
