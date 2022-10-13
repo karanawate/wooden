@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useFormik, yupToFormErrors } from "formik";
 import React from "react";
 import * as Yup from 'yup';
@@ -5,24 +6,34 @@ import * as Yup from 'yup';
 const AddAdmin = () =>{
         const formik  = useFormik({
             initialValues:{
-                name:'',
+                password:'',
                 phone:'',
                 email:''
             },
 
             validationSchema:Yup.object({
-                name:Yup.string()
+                password:Yup.string()
                     .max(5,"name must be 8 character")
                     .required('this field is required'),
-                email:Yup.string('this field is requred')
+                    email:Yup.string('this field is requred')
                          .required('this field is requird'),
                 phone:Yup.string('this field is req')
-                .required('this field is required')
-                        
+                .required('this field is required')  
             }),
 
-            onSubmit:(values) => {
-                console.log("form submit",values)
+            onSubmit:async(values) => {
+                let data = values;
+                        await
+                        axios
+                        .post("http://127.0.0.1:8000/api/add-admin",{
+                            ...data
+                        })
+                        .then(res =>{
+                            console.log(res.data.data)    
+                        })
+                        .catch(err =>{
+                            console.log(err)
+                        })
             } 
 
             
@@ -30,19 +41,19 @@ const AddAdmin = () =>{
         });
        
         
- console.log(formik.touched)
+// console.log(formik.touched)
     return <div>
         <form onSubmit={formik.handleSubmit}>
             <div>
                 <input
                         type="text"
-                        name="name"
+                        name="password"
                         onChange={formik.handleChange}
-                        value={formik.values.name}
-                        placeholder="enter name"
+                        value={formik.values.pasword}
+                        placeholder="enter password"
                         onBlur={formik.handleBlur}
                 />
-                {formik.touched.name && formik.errors.name  && <p style={{color:'red'}}>{formik.errors.name}</p>}
+                {formik.touched.password && formik.errors.password  && <p style={{color:'red'}}>{formik.errors.password}</p>}
             </div>
             <div>
             <input

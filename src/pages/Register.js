@@ -1,8 +1,15 @@
 import react from 'react';
 const Register = () => {
+    const registerbox = {
+        width:'500px',
+        height:'500px',
+        backgroundColor:'red'
+    }
     return(
         <div>
-            <p>Register page</p>
+            <div style={registerbox}>
+            dfasdf
+            </div>
         </div>
     );
 }

@@ -4,10 +4,6 @@ import './../App.css';
 import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
 
-
-
- 
-
 const Home = () => {
     const [users, setUsers] = useState([]);
     const [openedUser, setUserOpened] = useState(null)
@@ -31,15 +27,17 @@ const Home = () => {
 
 
         const deleteUsrs = async id =>{
-           await axios.post("http://127.0.0.1:8000/api/user-delete",{
-                'id':id
-            })
-                            .then(res =>{
-                                console.log(res)
-                                loadUsers()
-                            })
-                            .catch(err =>{
-                                console.log(err);
+                            await
+                            axios
+                            .post("http://127.0.0.1:8000/api/user-delete",{
+                                    'id':id
+                                })
+                                .then(res =>{
+                                    console.log(res)
+                                    loadUsers()
+                                })
+                                .catch(err =>{
+                                    console.log(err);
                             })
         }
         
