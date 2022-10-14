@@ -5,9 +5,10 @@ import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
-    const [users, setUsers] = useState([]);
+    const [users, setUsers] = useState([])
     const [openedUser, setUserOpened] = useState(null)
-    const [modalIsOpen, setIsOpen] = useState(false);
+    const [modalIsOpen, setIsOpen] = useState(false)
+    const [isDeleting, setisDeleting] = useState(null)
 
         useEffect(() =>{
             loadUsers()
@@ -27,6 +28,7 @@ const Home = () => {
 
 
         const deleteUsrs = async id =>{
+            setisDeleting(id)
                             await
                             axios
                             .post("http://127.0.0.1:8000/api/user-delete",{
@@ -34,6 +36,7 @@ const Home = () => {
                                 })
                                 .then(res =>{
                                     console.log(res)
+                                    setisDeleting(null)
                                     loadUsers()
                                 })
                                 .catch(err =>{
@@ -87,7 +90,7 @@ const Home = () => {
                      </td>
                      <td>{user.email}</td>
                      <td>{user.created_at}</td>
-                     <td><button onClick={() => deleteUsrs(user.id)}>delete</button></td>
+                     <td><button onClick={() => deleteUsrs(user.id)}>{isDeleting === user.id ? 'Deleting...' : 'Delete'}</button></td>
                     </tr>
                 ))}
             </tbody>
