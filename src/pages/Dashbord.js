@@ -1,27 +1,14 @@
 import axios from 'axios';
 import {useState,useEffect} from 'react';
-
-let usere = localStorage.getItem('user');
-
-const Dashbord = () =>{
-const[isAdmins, setIsAdmins] = useState([])
-
-    useEffect( () =>{
-        loadAdmins()
-    })
-    const loadAdmins = async () =>{
-                        await
-                        axios
-                        .get('http://127.0.0.1:8000/api/users')
-                        .then( res => {
-                            setIsAdmins(res.data.data)
-                        })
-                        .catch(err =>{
-                            console.log(err)
-                        })
-    }
-    return <div>
-        {JSON.stringify(isAdmins)}
-        Dashbord</div>
+import Modal from 'react-modal';
+    const Dashbord = () =>{
+        const[isOpenModal,setIsOPenModal] = useState(false)
+        return <div>
+               <Modal isOpen={isOpenModal}>
+                sdfasdfa
+               </Modal>            
+             Dashbord
+             <button onClick={() => setIsOPenModal(true)}>show modal</button>
+        </div>
 }
 export default Dashbord;
