@@ -11,20 +11,22 @@ import AddAdmin from './pages/AddAdmin';
 import {BrowserRouter as Router,Route,Routes,Link } from "react-router-dom";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import ReactModal from 'react-modal';
+import { useState } from 'react';
 
 function App() {
+  
   return (
     <div className="App">
         <Router>
-          <Navbar />  
+         
           <Routes>
-            <Route   path="/"           element={<Register/>} />
-            <Route   path="/home"                  element={<Home/>} />
-            <Route   path="/user-detail/:id"       element={<UserDetail/>} />
+            <Route path="/"                         element={<Login/>} />              
+            <Route   path="/register"               element={<Register/>} />
+            <Route   path="/home"                   element={<Home/>} />
+            <Route   path="/user-detail/:id"        element={<UserDetail/>} />
             <Route   path="/about"                  element={<About/>} />
-            <Route   path="/dashbord"               element={<Dashbord/>} />  
+            <Route   path="/dashboard"               element={<Dashbord/>} />  
             <Route   path="/add-admin"              element={<AddAdmin/>} />  
-            <Route path="/login"                    element={<Login/>} />              
           </Routes>
         </Router>
       </div>

@@ -22,7 +22,7 @@ const Register = () => {
 
         validationSchema:Yup.object({
             password:Yup.string()
-                .max(5,"name must be 8 character")
+                .max(6,"name must be 8 character")
                 .required('this field is required'),
                 email:Yup.string('this field is requred')
                      .required('this field is requird'),
@@ -97,7 +97,7 @@ const Register = () => {
                             />
                         {formik.touched.password && formik.errors.password  && <p style={{color:'red'}}>{formik.errors.password}</p>}
                         </div>
-                    <input type="submit" value="Register" className='btn btn-primary' />
+                    <input type="submit" value="Register" style={{marginLeft:'22%'}} className='btn btn-success w-50 mt-2' />
                     </div>  
             </form> 
         </div>

@@ -1,8 +1,14 @@
-import React from "react";
+import {useState} from "react";
 import { useFormik } from "formik";
 import * as Yup from 'yup';
+import { useNavigate } from 'react-router-dom';
+
+import axios from "axios";
 
 const Login = () =>{
+    const[isLogin, setIsLogin] = useState([])
+    const navigate = useNavigate();
+
     const loginBox ={
         width:'30rem',
         height:'15rem',
@@ -14,15 +20,33 @@ const Login = () =>{
 
     const formik = useFormik({
         initialValues:{
-            firstname:'',
-            lastname:''
+            email:'',
+            password:''
         },
         validationSchema:Yup.object({
-            email:Yup.string().max(10, "Character must be 10 digits").required('Enter your firstname'),
+            email:Yup.string().required('Enter your email'),
             password:Yup.string('enter password').max(8,'must be 8 degits').required('Enter your password')
         }),
-        onSubmit:(values) => {
-            console.log("form submit",values)
+        onSubmit:async(values) => {
+            let data = values;
+            console.log('called')
+                await
+                axios
+                .post('http://127.0.0.1:8000/api/user_login',{
+                  ...data
+                })
+                .then( res =>{
+                    setIsLogin(res.data)
+                
+                    localStorage.setItem('user', res.data);
+                    
+                    navigate('/dashboard');
+
+                     
+                })
+                .catch(err =>{
+                    console.log(err)
+                })
         } 
 
     })
@@ -30,8 +54,8 @@ const Login = () =>{
 
     return <div>
                 <div className="container">
-                    <div className="card" style={loginBox}>    
                         <form onSubmit={formik.handleSubmit}>
+                    <div className="card" style={loginBox}>    
                             <div className="mb-2 m-1">
                                 <label className="form-label" style={{marginLeft:'100px'}}>Email</label>
                                 <input 
@@ -60,9 +84,9 @@ const Login = () =>{
                                 />
                                 {formik.touched.password && formik.errors.password && <p style={{color:'red'}}>{formik.errors.password}</p>}
                             </div>
-                        </form>
                     <button  style={{marginLeft:'100px'}} className="btn btn-success w-50 mt-2" type="submit"> Login</button>
                     </div> 
+                        </form>
                 </div>
            </div>
 }
