@@ -9,24 +9,32 @@ import Navbar from './components/Layout/Navbar';
 import UserDetail from './pages/UserDetail';
 import AddAdmin from './pages/AddAdmin';
 import {BrowserRouter as Router,Route,Routes,Link } from "react-router-dom";
+import React, { useContext, createContext, useState } from "react";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import ReactModal from 'react-modal';
-import { useState } from 'react';
+import PrivateRoutes from './pages/utils/PrivateRoutes';
 
 function App() {
+  const [user, setUser] = useState(null);
+  let userLogin  = localStorage.getItem('user')
   
+  
+
   return (
     <div className="App">
         <Router>
-         
+                 
           <Routes>
-            <Route path="/"                         element={<Login/>} />              
-            <Route   path="/register"               element={<Register/>} />
-            <Route   path="/home"                   element={<Home/>} />
-            <Route   path="/user-detail/:id"        element={<UserDetail/>} />
-            <Route   path="/about"                  element={<About/>} />
-            <Route   path="/dashboard"               element={<Dashbord/>} />  
-            <Route   path="/add-admin"              element={<AddAdmin/>} />  
+            <Route element={<PrivateRoutes/>}>
+              <Route   path="/home"                   element={<Home/>} />
+              <Route   path="/user-detail/:id"        element={<UserDetail/>} />
+              <Route   path="/about"                  element={<About/>} />
+              <Route   path="/dashboard"               element={<Dashbord/>} />  
+              <Route   path="/add-admin"              element={<AddAdmin/>} />  
+          </Route>
+          
+          <Route   path="/register"               element={<Register/>} />
+          <Route path="/login"                         element={<Login/>} />              
           </Routes>
         </Router>
       </div>

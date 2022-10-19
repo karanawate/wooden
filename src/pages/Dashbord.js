@@ -1,28 +1,19 @@
 import axios from 'axios';
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate } from "react-router-dom";
+import Navbar from '../components/Layout/Navbar';
 
 
   const Dashbord = () =>{
-    let loginUser = localStorage.getItem('user')
-    const navigate = useNavigate();
-
-    useEffect(() => {
-      if(!loginUser)
-      {
-        navigate('/')
-        // return null
-      }
-    }, [ loginUser ])
-    if(!loginUser)
-
-    {
-      navigate('/')
-      return null
+    const logoutUser = () =>{
+      localStorage.clear();
+      Navigate("/login")
     }
       return <div>
-         {loginUser}
-          Dashbord
+      
+      <Navbar></Navbar>
+      <button type="submit"  onClick={logoutUser}>Logout</button>
+      
      </div>
     
     
